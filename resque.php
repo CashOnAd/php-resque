@@ -16,6 +16,13 @@ $logLevel = 0;
 $LOGGING = getenv('LOGGING');
 $VERBOSE = getenv('VERBOSE');
 $VVERBOSE = getenv('VVERBOSE');
+
+$PREFIX = getenv('PREFIX');
+
+if($PREFIX){
+    Resque::redis()->prefix($PREFIX);
+}
+
 if(!empty($LOGGING) || !empty($VERBOSE)) {
 	$logLevel = Resque_Worker::LOG_NORMAL;
 }
